@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:element name="order">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cart-id" type="xs:string" minOccurs="1" maxOccurs="1" />
+                <xs:element name="items" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="line-item" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="sku" type="SKUType" />
+                                        <xs:element name="qty" type="xs:positiveInteger" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="billing-address" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="addressline1" type="xs:string" minOccurs="1" maxOccurs="1" />
+                            <xs:element name="addressline2" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element name="addressline3" type="xs:string" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="shipping-address" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="addressline1" type="xs:string" minOccurs="1" maxOccurs="1" />
+                            <xs:element name="addressline2" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element name="addressline3" type="xs:string" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="SKUType">
+        <xs:restriction base="xs:string">
+            <xs:length value="10"/>
+            <xs:pattern value="[A-Za-z0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
